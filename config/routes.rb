@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/hangout_sample' => 'users#hangout_sample'
   get 'users/hangout-on-air' => 'users#hangout-on-air'
+  get '/users/components/polymer/polymer' => 'users#polymer'
+  get '/users/components/core-elements/core-elements' => 'users#core-elements'
+  get '/users/warholify' => 'users#warholify'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
