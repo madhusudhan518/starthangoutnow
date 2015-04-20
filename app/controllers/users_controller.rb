@@ -4,4 +4,10 @@ class UsersController < ApplicationController
 
   def show
   end
+
+  def hangout_sample
+    p "parameters areeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+    p params
+  end
+
 end

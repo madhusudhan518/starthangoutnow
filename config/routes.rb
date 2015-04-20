@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root  'users#index'
 
   get 'users/show'
-  get 'users/hangout-sample' => 'users#hangout-sample'
+  get 'users/hangout_sample' => 'users#hangout_sample'
   get 'users/hangout-on-air' => 'users#hangout-on-air'
 
   # The priority is based upon order of creation: first created -> highest priority.

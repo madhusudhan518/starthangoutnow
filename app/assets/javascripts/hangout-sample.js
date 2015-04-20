@@ -23,20 +23,22 @@ onApiReady = function(){
   var now = new Date();
 
   var hangoutUrl = gapi.hangout.getHangoutUrl();
+  console.log("HNAGOUT URL");
+  console.log(hangoutUrl);
 
   var callbackUrl = 'register_hangout.json';
 }
 
-$.ajax({
-  url: callbackUrl,
-  dataType: 'json',
-  data: {
-    "hangoutUrl": hangoutUrl,
-    "topic": param["gd"]
-  }
-}).done(function(data, status, xhr){
-  $('#msg').html(data.msg);
-}).fail(function(xhr, status, error){
-  $('#msg').html('therwe was a prblemmmmmmmmmmmmmmmmmmmmm.try again.("+textStatus+")");
-});
-};
+// $.ajax({
+//   url: callbackUrl,
+//   dataType: 'json',
+//   data: {
+//     "hangoutUrl": hangoutUrl,
+//     "topic": param["gd"]
+//   }
+// }).done(function(data, status, xhr){
+//   $('#msg').html(data.msg);
+// }).fail(function(xhr, status, error){
+//   //$('#msg').html('therwe was a prblemmmmmmmmmmmmmmmmmmmmm.try again.("+textStatus+")");
+//   console.log("there was a problem")
+// });

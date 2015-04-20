@@ -26,7 +26,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script>
-
+  console.log("entered intooooooooooooooooooooooooooooooo XMLLLLLLLLLLLLLLllllllllll");
   var token = "NONE";
 
   function relayMessages() {
@@ -66,13 +66,17 @@
   // This builds the inner IFRAME that exists in the desired domain
   var gd = 'Hangouts'
 
+  var Url = decodeURIComponent('https://madhumaddy.pagekite.me/users/hangout_sample.html') + "?parent="
+  + encodeURIComponent(window.location.href)
+  + "&token=" + encodeURIComponent(token)
+  + "&gd=" + encodeURIComponent(gd)+ "&output=embed";
+
+
   var ifrm = document.createElement("IFRAME");
   var gd = gadgets.views.getParams()['appData'];
   var ifrm_id = "googleplus_target";
-  ifrm.setAttribute("src", decodeURIComponent('https://madhumaddy.pagekite.me/users/hangout-sample.html') + "?parent="
-  + encodeURIComponent(window.location.href)
-  + "&token=" + encodeURIComponent(token)
-  + "&gd=" + encodeURIComponent(gd))+ "&output=embed");
+  //ifrm.setAttribute("src",window.location.replace(Url));
+  window.open("src",window.location.replace(Url));
   ifrm.style.width = "100\%";
   ifrm.style.height = "100\%";
   ifrm.style.minHeight = "inherit";
