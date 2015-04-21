@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  starts_at: 2015-04-21 11:42:17
+  visibility: false
+  registration: false
+  reminders: false
+
+two:
+  name: MyString
+  description: MyText
+  starts_at: 2015-04-21 11:42:17
+  visibility: false
+  registration: false
+  reminders: false

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :comments
+
+  get '/events/get_event_name' => 'events#get_event_name'
+  resources :events
+
   root  'users#index'
 
   get 'users/show'
@@ -7,6 +12,9 @@ Rails.application.routes.draw do
   get '/users/components/polymer/polymer' => 'users#polymer'
   get '/users/components/core-elements/core-elements' => 'users#core-elements'
   get '/users/warholify' => 'users#warholify'
+  get '/users/event_details' => 'users#event_details'
+  get '/users/hangout_onair' => 'users#hangout_onair'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

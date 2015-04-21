@@ -38,5 +38,11 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications. 
+# provides support for Cross-Origin Resource Sharing (CORS) for Rack compatible web applications.
 gem 'rack-cors', '~> 0.4.0'
+
+
+# errors
+gem 'pry-rails'
+gem 'better_errors'
+gem 'binding_of_caller'

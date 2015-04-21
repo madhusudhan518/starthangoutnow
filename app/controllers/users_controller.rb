@@ -10,4 +10,7 @@ class UsersController < ApplicationController
     p params
   end
 
+  def event_details
+  end
+
 end

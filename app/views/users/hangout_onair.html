@@ -1,3 +1,8 @@
+
+<!-- <script src="https://apis.google.com/js/platform.js" async defer></script>
+<div class="g-hangout" data-render="createhangout" type="onair" data-initial_apps="[{ app_id : '466254539627', start_data : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }]"></div> -->
+
+
 <!--
 
 * Licensed under the Apache License, Version 2.0 (the "License"); you
@@ -19,6 +24,7 @@ http://hangoutiframer.appspot.com for further details. -->
 <!-- Standard boilerplate to start hangouts.  Without these, your Hangout will not start. -->
 <script src="//hangoutsapi.talkgadget.google.com/talkgadget/apps/gadgets/js/rpc.js"></script>
 <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
+<script type="text/javascript" src="/assets/countdown.js" defer="defer"></script>
 
 <style type="text/css">
 <!--
@@ -36,8 +42,39 @@ http://hangoutiframer.appspot.com for further details. -->
 
   -->
   </style>
-  <!--
   <body style="padding: 10px">
+
+    <!-- Start Timer -->
+    <h4>YOur Hangout will Start in 5 minutes </h4>
+    <button onclick="getEventname()">Click me</button>
+    <!-- <div onload="timedText()">
+      <p id="demo"></p>
+    </div> -->
+    <script>
+    // function timedText() {
+    //
+    //
+    //   setTimeout(function(){ document.getElementById("demo").innerHTML = "Hello World"; }, 2000);
+    //   //var x = document.getElementById("txt");
+    //   //var x = document.getElementById('madhu').label;
+    //   //setTimeout(function(){ ="2 seconds" }, 2000);
+    //   //setTimeout(function(){ x.value="4 seconds" }, 4000);
+    //   //setTimeout(function(){ x.value="6 seconds" }, 6000);
+    //   //setTimeout(function(){ x.value="8 seconds" }, 8000);
+    // }
+    </script>
+
+    <!-- end timer -->
+    <p onload="getEventname()"><p>
+
+    <iframe width="420" height="315" src="" frameborder="0" allowfullscreen id="showinglive" ></iframe>
+    <!-- Starting ONAIR -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <h1>Click when you are ready </h1>
+    <div id="placeholder-div3" class="mmmmmmmmmmmm"></div>
+
+
+    <!-- ending ONAIR -->
 
     <h3>On Air Sample (hangoutiframer edition)</h3>
 
@@ -77,14 +114,75 @@ http://hangoutiframer.appspot.com for further details. -->
   <hr>
 
   <p><a href="http://developers.google.com/+/hangouts/getting-started">Read the docs</a>
-    to learn more about developing Hangouts!</a></p> -->
+    to learn more about developing Hangouts!</a></p>
 
-    <div>
-      <h1>Welcome to STARTHANGOUTNOW app</h1>
-      <h2>Your Broadcast has been recorded automatically :)</h2>
-      <%= render :partial => "comments/form", :locals => {:comment => Comment.new} %>
-    </div>
     <script>
+    // setting i frame
+
+      $('#showinglive').attr('src',gapi.hangout.onair.getYouTubeLiveId());
+
+    // Function to get event name
+    var name="";
+    function getEventname(){
+
+      $.ajax({
+
+        type: "GET",
+        dataType: "text",
+        url: "/events/get_event_name",
+        success: function(data){
+          console.log("1");
+          console.log(data);
+          console.log("2");
+          name = data;
+        }
+      });
+
+    }
+
+    // function returnName(name){
+    //   console.log("RETURN NAME");
+    //   console.log(typeof(name));
+    //   console.log(name);
+    //   var eventname =  name
+    //   var test  = "madhu";
+    //   console.log(eventname);
+    //   console.log(test);
+    //   return name;
+    // }
+
+      //console.log( getEventname());
+      //console.log();
+      //render hangout onair button
+
+      getEventname();
+
+      setTimeout(function() {
+        console.log("start");
+        console.log(name);
+        console.log("end");
+        gapi.hangout.render('placeholder-div3', {
+          'topic': name,//getEventname(),
+          'render': 'createhangout',
+          'hangout_type': 'onair',
+          'initial_apps': [{'app_id' : '466254539627', 'start_data' : 'dQw4w9WgXcQ', 'app_type' : 'ROOM_APP' }],
+          'widget_size': 175,
+          'invites': [{ 'id' : 'madhusudhan@coppernine.com', 'invite_type' : 'EMAIL' },
+          { 'id' : 'rafeeq.sk786@gmail.com', 'invite_type' : 'EMAIL' }]
+        });
+      }, 500);
+
+
+      //setting frame to live the show
+      $(".mmmmmmmmmmmm").click(function() {
+        console.log("Haiiiiiiiiiiiiiiii");
+      });
+
+
+      // function to get elements
+
+
+
       // Updates basic Hangout stats.
       function refreshHangoutStats() {
         document.querySelector('#isOnAir').innerHTML =
