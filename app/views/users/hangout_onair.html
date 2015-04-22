@@ -66,8 +66,10 @@ http://hangoutiframer.appspot.com for further details. -->
 
     <!-- end timer -->
     <p onload="getEventname()"><p>
-
-    <iframe width="420" height="315" src="" frameborder="0" allowfullscreen id="showinglive" ></iframe>
+      <div>
+        <iframe width="420" height="315" src="" frameborder="0" allowfullscreen></iframe>
+        <!-- http://www.youtube.com/embed/EI__-hJLX7A?rel=0&controls=1&modestbranding=1&iv_load_policy=3 -->
+      </div>
     <!-- Starting ONAIR -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <h1>Click when you are ready </h1>
@@ -75,6 +77,58 @@ http://hangoutiframer.appspot.com for further details. -->
 
 
     <!-- ending ONAIR -->
+
+
+
+    <!-- I FRAME YOUTUBE START-->
+
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <!-- <div id="player"></div> -->
+
+    <script>
+    // 2. This code loads the IFrame Player API code asynchronously.
+    var tag = document.createElement('script');
+
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    // 3. This function creates an <iframe> (and YouTube player)
+    //    after the API code downloads.
+    var player;
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player('player', {
+        height: '390',
+        width: '640',
+        videoId: 'M7lc1UVf-VE',
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
+    }
+
+    // 4. The API will call this function when the video player is ready.
+    function onPlayerReady(event) {
+      event.target.playVideo();
+    }
+
+    // 5. The API calls this function when the player's state changes.
+    //    The function indicates that when playing a video (state=1),
+    //    the player should play for six seconds and then stop.
+    var done = false;
+    function onPlayerStateChange(event) {
+      if (event.data == YT.PlayerState.PLAYING && !done) {
+        setTimeout(stopVideo, 6000);
+        done = true;
+      }
+    }
+    function stopVideo() {
+      player.stopVideo();
+    }
+    </script>
+
+    <!-- I FRAME YOUTUBE END -->
 
     <h3>On Air Sample (hangoutiframer edition)</h3>
 
@@ -117,6 +171,16 @@ http://hangoutiframer.appspot.com for further details. -->
     to learn more about developing Hangouts!</a></p>
 
     <script>
+
+    // checking broadcast
+    gapi.hangout.onair
+    setTimeout(function() {
+      console.log("IS HANGOUT ON AIR");
+    console.log(gapi.hangout.onair.isOnAirHangout());
+    console.log("IS BROADCASTTTTTTTTTTTTTT");
+    console.log(gapi.hangout.onair.isBroadcasting());
+    }, 500);
+
     // setting i frame
 
       $('#showinglive').attr('src',gapi.hangout.onair.getYouTubeLiveId());
@@ -178,6 +242,10 @@ http://hangoutiframer.appspot.com for further details. -->
         console.log("Haiiiiiiiiiiiiiiii");
       });
 
+      // iframe src
+      //var list = document.getElementsByTagName("UL")[0];
+      //list.getElementsByTagName("LI")[0].innerHTML = "Milk";
+
 
       // function to get elements
 
@@ -206,6 +274,8 @@ http://hangoutiframer.appspot.com for further details. -->
           gapi.hangout.onair.isNewParticipantInBroadcast();
           document.querySelector('#isBroadcaster').innerHTML =
           gapi.hangout.getLocalParticipant().isBroadcaster;
+          console.log("YOUB LIVE IDDDDDDDDDDDDDDDDDDDDDDDDDD");
+          console.log(gapi.hangout.onair.getYouTubeLiveId());
         }
       }
 
